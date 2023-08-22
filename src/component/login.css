@@ -1,0 +1,39 @@
+.login-wrapper{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-color: rgb(87, 60, 113);
+}
+
+.login{
+    width: 400px;
+    background-color: rgb(163, 163, 162);
+    padding: 20px;
+    text-align: center;
+    border-radius:20px;
+}
+
+.login img{
+    width: 100px;
+}
+
+.login h2{
+    margin: 20px 0;
+}
+.login button{
+    background-color: rgb(36, 36, 37);
+    color: wheat;
+    border: 0px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.login button:hover{
+    background-color: white;
+    color: black;
+}
+
