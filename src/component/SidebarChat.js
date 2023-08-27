@@ -41,7 +41,7 @@ export default function SidebarChat({id,name,addnewChat}) {
             addnewChat ? (
                 
                     <div className='sidebar-chat' onClick={createChat}>
-                        <h2>Add New Chat</h2>
+                        <h2>Add New Room</h2>
                     </div>
             ) : (
                 <Link to={`/room/${id}`}>

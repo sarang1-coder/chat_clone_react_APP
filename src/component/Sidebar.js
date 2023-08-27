@@ -64,7 +64,7 @@ export default function Sidebar({setUser,user}) {
       {/*Search*/}
       <div className='sidebar-search'>
         <div className='sidebar-searchContainer'>
-          <SearchTwoToneIcon />
+          <SearchTwoToneIcon className='seacrh_icons'/>
           <input type='text'
             placeholder='Search or Start New Chat'
             value={search}
@@ -74,9 +74,11 @@ export default function Sidebar({setUser,user}) {
       </div>
 
 
+
       {/*Chat section*/}
       <div className='sidebar-Chat'>
         <SidebarChat addnewChat />
+        <div className='chat-room-list'>
         {filteredRooms.map((room) => (
           <SidebarChat
             key={room.id}
@@ -85,6 +87,8 @@ export default function Sidebar({setUser,user}) {
             email={room.data.email}
           />
         ))}
+        </div>
+
       </div>
 
     </div>

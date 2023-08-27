@@ -15,12 +15,17 @@ import { storage } from '../firebase';
 import { DialogContentText } from '@mui/material';
 import { ref, uploadBytes,getDownloadURL,uploadBytesResumable } from 'firebase/storage';
 import { v4 } from 'uuid';
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
 
 
 
 export default function Chat({user}) {
 
+
+    // /fetch room id 
     const{roomId}= useParams();
+    
 
     const[roomName,setroomName]=useState('');
 
@@ -29,7 +34,14 @@ export default function Chat({user}) {
     const[seed,setSeed]=useState("");
 
 
+
+    //send message
     const[messages,setMessages]=useState([]);
+
+
+    //emoji
+    const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
+
 
 
      //dialog box to send files
@@ -39,7 +51,7 @@ export default function Chat({user}) {
     // send files
     const [selectedFile, setSelectedFile] = useState(null);
 
-
+ 
 
     useEffect(() => {
         if(roomId){
@@ -77,6 +89,15 @@ export default function Chat({user}) {
     useEffect(() => {
         setSeed(Math.floor(Math.random() * 5000));
     },[])
+
+
+    // emoji hide & show
+    function toggleEmojiPicker() {
+        setOpenEmojiPicker(!openEmojiPicker);
+  }
+
+
+
 
 
     // show dialog box
@@ -138,6 +159,20 @@ export default function Chat({user}) {
                 sendMessage(e);
             }
         };
+
+
+        //add emoji in input text 
+        function handleEmojiSelect(e) {
+            let sym = e.unified.split("-");
+            let codesArray = [];
+            sym.forEach((el) => codesArray.push("0x" + el));
+            let emoji = String.fromCodePoint(...codesArray);
+            setInput((currentText) => currentText + emoji);
+        }
+
+
+
+
 
 
   return (
@@ -226,20 +261,25 @@ export default function Chat({user}) {
     <div className='chat-footer'>
 
 
-    <InsertEmoticonTwoToneIcon />
+    <InsertEmoticonTwoToneIcon onClick={toggleEmojiPicker} />
 
+        
 
       <InsertLinkTwoToneIcon onClick={handleOpenDialog} />
 
 
-      <form onSubmit={handleSendMessage}>
+      <form onSubmit={handleSendMessage} className='chat-form'>
+        <div className="emoji-picker" style={openEmojiPicker ? { display: "block" } : { display: "none" }}>
+            <Picker data={data} onEmojiSelect={handleEmojiSelect} />
+        </div>
+
         <input
           type='text'
           value={input}
           placeholder='Type your Message'
           onChange={textInput}
         />
-        <input type='submit' />
+        <input type='submit'/>
       </form>
 
 

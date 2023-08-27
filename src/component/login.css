@@ -2,8 +2,11 @@
     display: grid;
     place-items: center;
     height: 100vh;
-    background-color: rgb(87, 60, 113);
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 }
+
+
 
 .login{
     width: 400px;

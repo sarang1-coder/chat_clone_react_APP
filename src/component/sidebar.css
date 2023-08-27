@@ -1,6 +1,6 @@
 .sidebar{
     flex:0.35;
-    background-color: rgb(231, 231, 217);
+    background-color: rgb(179, 179, 173);
 }
 
 
@@ -8,7 +8,7 @@
 .sidebar-header{
     display: flex;
     justify-content: space-between;
-    border-right: 1px solid lightgray;
+    border-right: 1px solid rgb(169, 169, 169);
     padding: 10px;
 }
 
@@ -27,15 +27,20 @@
 .sidebar-search{
     display: flex;
     align-items: center;
-    background-color: antiquewhite;
+    background-color: rgb(216, 211, 200);
     height: 40px;
     padding: 10px;
 }
+.seacrh_icons{
+    margin: .5rem;
+    opacity: .7;
+}
+
 
 .sidebar-searchContainer{
     display: flex;
     align-items: center;
-    background-color: rgb(231, 233, 235);
+    background-color: rgb(183, 189, 195);
     height: 35px;
     border-radius:20px;
     width: 100%;
@@ -52,20 +57,31 @@
 /* SideBar Chat  */
 .sidebar-Chat{
     display: flex;
-    background-color: white;
+    max-height:33rem;
+    background-color: rgb(223, 207, 207);
     flex-direction: column;
     position: relative;
     z-index: 10;
-    
 }
+
+
+/* room list */
+.chat-room-list{
+    flex-grow: 1;
+    overflow-y: auto;
+}
+.chat-room-list::-webkit-scrollbar {
+  display: none;
+}
+
 
 .sidebar-chat{
     display: flex;
     align-items: center;
-    border-bottom:1px solid wheat;
-    padding: 10px;
+    border-bottom:1px solid rgb(195, 192, 186);
+    padding: 20px;
     max-height:30px;
-    overflow: hidden;
+    height: calc(100vh-90px);
 }
 
 .heightc{
@@ -75,7 +91,7 @@
 
 .sidebar-chat:hover{
     cursor: pointer;
-    background-color: rgb(223, 221, 221);
+    background-color: rgb(165, 156, 156);
 }
 
 .sidebar-chatinfo{
