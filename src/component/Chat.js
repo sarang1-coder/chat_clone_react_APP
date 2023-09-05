@@ -17,10 +17,11 @@ import { ref, uploadBytes,getDownloadURL,uploadBytesResumable } from 'firebase/s
 import { v4 } from 'uuid';
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
+import emailjs from '@emailjs/browser';
+import { motion, Variants} from "framer-motion";
 
 
-
-export default function Chat({user}) {
+ const Chat=({user})=> {
 
 
     // /fetch room id 
@@ -37,6 +38,33 @@ export default function Chat({user}) {
 
     //send message
     const[messages,setMessages]=useState([]);
+
+    const [active, setActive] = React.useState(false);
+
+
+
+
+    const container: Variants = {
+        active: {
+        background: "#ff00b1"
+        },
+        disabled: {
+        background: "#0D00FF"
+        }
+    };
+
+    const glowVariants = {
+        initial: {
+        opacity: 0
+        },
+        hover: {
+        opacity: 1
+        }
+  }
+
+
+
+
 
 
     //emoji
@@ -83,6 +111,7 @@ export default function Chat({user}) {
         });
         setInput('');
     }
+
 
     
 
@@ -170,7 +199,7 @@ export default function Chat({user}) {
             setInput((currentText) => currentText + emoji);
         }
 
-
+    
 
 
 
@@ -212,15 +241,29 @@ export default function Chat({user}) {
 
         {/*Chat Body*/}
 
-        <div className='chat-body'>
-
-
+    <motion.div
+      variants={container}
+      initial='intial'
+      whileHover="hover"
+      animate={active ? "active" : "disabled"}
+      onClick={() => setActive(!active)}
+      className="container chat-body"
+    >
+        <motion.div variants={glowVariants} className="glow">
         {
-        messages.map((message) => (
-            <div className={`chat-message ${message.name === user.displayName && 'chat-receiver'}`}>
+        messages.map((message,index) => (
+            <div key={index}  className={`chat-message ${message.name === user.displayName && 'chat-receiver'}`}>
+
+            
                 <span className='chat-name'>
                     {message.name}
                 </span>
+
+                
+
+
+
+
                 {message.message && <p>{message.message}</p>}
                 <span className='send_content'>
                     {message.imgUrl && <img style={{ width: "100%", height: "auto", objectFit: "cover" }} src={message.imgUrl} alt='Uploaded' />}
@@ -251,7 +294,8 @@ export default function Chat({user}) {
             </div>
             ))
         }
-        </div>
+        </motion.div>
+        </motion.div>
 
 
 
@@ -304,3 +348,6 @@ export default function Chat({user}) {
     </div>
   )
 }
+
+
+export default Chat;

@@ -57,7 +57,7 @@
 /* SideBar Chat  */
 .sidebar-Chat{
     display: flex;
-    max-height:33rem;
+    max-height:29rem;
     background-color: rgb(223, 207, 207);
     flex-direction: column;
     position: relative;
@@ -80,8 +80,8 @@
     align-items: center;
     border-bottom:1px solid rgb(195, 192, 186);
     padding: 20px;
-    max-height:30px;
-    height: calc(100vh-90px);
+    max-height:20px;
+    height: calc(100vh-80px);
 }
 
 .heightc{
@@ -92,6 +92,7 @@
 .sidebar-chat:hover{
     cursor: pointer;
     background-color: rgb(165, 156, 156);
+    border-radius: 15px;
 }
 
 .sidebar-chatinfo{

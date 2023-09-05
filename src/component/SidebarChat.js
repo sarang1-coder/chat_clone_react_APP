@@ -13,6 +13,7 @@ export default function SidebarChat({id,name,addnewChat}) {
 
     const [lastmsg, setlastmsg] = useState('');    
 
+
     useEffect(() => {
         setSeed(Math.floor(Math.random() * 5000));
 
@@ -39,6 +40,7 @@ export default function SidebarChat({id,name,addnewChat}) {
 
   return (
             addnewChat ? (
+                
                 
                     <div className='sidebar-chat' onClick={createChat}>
                         <h2>Add New Room</h2>
