@@ -57,7 +57,7 @@
 /* SideBar Chat  */
 .sidebar-Chat{
     display: flex;
-    max-height:29rem;
+    max-height:30rem;
     background-color: rgb(223, 207, 207);
     flex-direction: column;
     position: relative;

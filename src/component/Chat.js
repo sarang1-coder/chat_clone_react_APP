@@ -262,8 +262,6 @@ import { motion, Variants} from "framer-motion";
                 
 
 
-
-
                 {message.message && <p>{message.message}</p>}
                 <span className='send_content'>
                     {message.imgUrl && <img style={{ width: "100%", height: "auto", objectFit: "cover" }} src={message.imgUrl} alt='Uploaded' />}
