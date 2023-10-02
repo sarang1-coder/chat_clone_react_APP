@@ -17,9 +17,9 @@ import { ref, uploadBytes,getDownloadURL,uploadBytesResumable } from 'firebase/s
 import { v4 } from 'uuid';
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import emailjs from '@emailjs/browser';
 import { motion, Variants} from "framer-motion";
-
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
+import { doc, getDocs,collection} from "firebase/firestore";
 
  const Chat=({user})=> {
 
@@ -41,7 +41,11 @@ import { motion, Variants} from "framer-motion";
 
     const [active, setActive] = React.useState(false);
 
+    const[showuserList,setShowUserList]=React.useState(false);
 
+    function toggleUserList(){
+        setShowUserList(!showuserList);
+    }
 
 
     const container: Variants = {
@@ -111,6 +115,7 @@ import { motion, Variants} from "framer-motion";
         });
         setInput('');
     }
+
 
 
     
@@ -199,9 +204,34 @@ import { motion, Variants} from "framer-motion";
             setInput((currentText) => currentText + emoji);
         }
 
-    
 
+    //         const sendMessage = (e) => {
+    //     e.preventDefault();
+    //     if(input===''){
+    //         return alert('Please Enter Message');
+    //     }
+    //     db.collection('rooms').doc(roomId).collection('message').add({
+    //         name:user.displayName,
+    //         message:input,
+    //         timestamp:firebase.firestore.FieldValue.serverTimestamp()
+    //     });
+    //     setInput('');
+    // }
 
+  const collectionName = 'rooms'; // Replace with your collection name
+
+  try {
+    const querySnapshot = getDocs(collection(firebase.firestore, collectionName));
+
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log("doc",doc.id, " => ", doc.data());
+    });
+  } catch (error) {
+    console.error('Error fetching documents:', error);
+  }
+
+  // ... rest of your component
 
 
   return (
@@ -305,6 +335,10 @@ import { motion, Variants} from "framer-motion";
 
     <InsertEmoticonTwoToneIcon onClick={toggleEmojiPicker} />
 
+
+    <RecentActorsIcon onClick={toggleUserList}/>
+ 
+        
         
 
       <InsertLinkTwoToneIcon onClick={handleOpenDialog} />
@@ -314,7 +348,6 @@ import { motion, Variants} from "framer-motion";
         <div className="emoji-picker" style={openEmojiPicker ? { display: "block" } : { display: "none" }}>
             <Picker data={data} onEmojiSelect={handleEmojiSelect} />
         </div>
-
         <input
           type='text'
           value={input}
